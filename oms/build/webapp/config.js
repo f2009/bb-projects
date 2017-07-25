@@ -89,6 +89,7 @@
             // 模块源路径
             paths: {
                 requireMainFile: 'app/<%=moduleName%>/module-main',
+                res: 'app/<%=moduleName%>/common/res',
                 js: ['app/**/*.js', '!app/**/module-*.js'],
                 tpl: ['app/**/*.tpl']
             },

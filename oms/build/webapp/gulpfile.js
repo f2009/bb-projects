@@ -131,6 +131,7 @@ gulp.task('build-fwk', [
  */
 gulp.task('build-module', [
     'build-module-js',
+    'build-module-res',
     'build-module-optimize',
     'build-module-tpl'
 ], function() {
@@ -403,6 +404,23 @@ gulp.task('build-module-js', function () {
          .on('error', function(err) {
              console.error(">>>err:build:module:js", err);
          });
+});
+
+/**
+ * 处理resources
+ * app/{moduleName}/common/res
+ */
+gulp.task('build-module-res', function () {
+    var resPath = _.template(ENV_MODULE_CONF.paths.res)({moduleName:ENV_MODULE_NAME});
+
+    return gulp.src(getSrcPath(resPath+"/**/*"))
+        /*.pipe(gulpif(function(file){
+            return /\.css$/.test(file.path);
+        }, cleancss()))*/
+        .pipe(gulp.dest(getDistPath(resPath)))
+        .on('error', function(err) {
+            console.error(">>>err:build:module:res", err);
+        });
 });
 
 /**
